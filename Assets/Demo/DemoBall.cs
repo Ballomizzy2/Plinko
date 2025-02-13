@@ -85,6 +85,12 @@ public class DemoBall : MonoBehaviour
             Debug.Log("Left Player Just Scored!");
             Destroy(this.gameObject);
         }
+
+        if (other.CompareTag("PowerUp"))
+        {
+            gameManager.IncreaseDifficulty();
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

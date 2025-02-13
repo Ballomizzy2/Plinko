@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public int lastToScoreSign = 1;
 
     [SerializeField]
+    GameObject powerUp;
+
+    [SerializeField]
     Renderer floorRenderer;
 
     [SerializeField]
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
         DisplayScore();
         ScoreSound();
         m_AudioSource.pitch += .1f;
-        IncreaseDifficulty();
+        //IncreaseDifficulty();
         Camera.main.GetComponent<CameraShake>().Shake();
         floorRenderer.material.color = RandomColor();
     }
