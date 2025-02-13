@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPowerUp() 
     {
-        Vector3 posToSpawn = new Vector3(Random.Range(-4, 4), 1.11f, Random.Range(-4, 4));
+        Vector3 posToSpawn = new Vector3(Random.Range(-4, 4), 1.11f, Random.Range(-7, 7));
         Instantiate(powerUp, posToSpawn, Quaternion.identity);
     }
 
