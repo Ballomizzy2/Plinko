@@ -9,12 +9,14 @@ public class DemoPaddle : MonoBehaviour
     public float unitsPerSecond = 3f;
     public string axisName;
 
+    private GameManager gameManager;
+
     [SerializeField]
     private DemoBall ball;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     private void FixedUpdate()
@@ -29,6 +31,7 @@ public class DemoPaddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,6 +39,9 @@ public class DemoPaddle : MonoBehaviour
         if (!collision.gameObject.CompareTag("Ball"))
             return;
 
+        // get the point on the paddle where the ball hits
+        float dist = (collision.gameObject.transform.position.x - transform.localPosition.x) % transform.lossyScale.x;
+        gameManager.HitSound(dist);
         Debug.Log($"we hit {collision.gameObject.name}");
         
         // get reference to paddle collider
@@ -46,22 +52,7 @@ public class DemoPaddle : MonoBehaviour
 
         Debug.Log($"maxX = {maxX}, minY = {minX}");
         Debug.Log($"x pos of ball is {collision.transform.position.x}");
-
-
-        Rigidbody ballRb = collision.rigidbody;
-        Vector3 ballPosition = collision.transform.position;
-        Vector3 paddlePosition = transform.position;
-
-        float hitFactorX = (ballPosition.x - paddlePosition.x) / GetComponent<BoxCollider>().bounds.extents.x;
-        float hitFactorZ = (ballPosition.z - paddlePosition.z) / GetComponent<BoxCollider>().bounds.extents.z;
-        
-
-        Quaternion rotation = Quaternion.Euler(hitFactorX, 0f, hitFactorZ * 2);
-        Vector3 bounceDirection = rotation * Vector3.up;
-
-        Rigidbody rb = collision.rigidbody;
-        rb.AddForce(bounceDirection * 10f, ForceMode.Impulse);
-
+     
         ball.SpeedBallUp();
     }
 }

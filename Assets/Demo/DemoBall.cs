@@ -10,8 +10,13 @@ public class DemoBall : MonoBehaviour
 
     public float minVelocity = 10;
 
+    [SerializeField]
+    GameObject ballVFX;
+
     [SerializeField]GameObject ballGO;
     GameManager gameManager;
+
+    AIPaddle aiPaddle;
 
     bool hasScored = false;
 
@@ -22,6 +27,8 @@ public class DemoBall : MonoBehaviour
         ballrB = GetComponent<Rigidbody>();
         RandomColor();
         StartBall(gameManager.lastToScoreSign);
+        aiPaddle = FindAnyObjectByType<AIPaddle>();
+        aiPaddle.SetBall(this.transform);
     }
 
     // Update is called once per frame
@@ -47,6 +54,7 @@ public class DemoBall : MonoBehaviour
     }
     public void SpeedBallUp()
     {
+       if(ballrB)
         ballrB.linearVelocity *= speedMultiplier;
     }
 
@@ -81,6 +89,7 @@ public class DemoBall : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Destroy(Instantiate(ballVFX, transform.position, Quaternion.identity), 2f);  
         SpeedBallUp(1.2f);
     }
 
