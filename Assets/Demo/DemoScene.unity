@@ -1344,6 +1344,7 @@ MonoBehaviour:
   leftScore: 0
   rightScore: 0
   lastToScoreSign: 1
+  powerUp: {fileID: 9054551879317654205, guid: e3dc075c54da5e045aeb785d34caa6bc, type: 3}
   floorRenderer: {fileID: 1468140570}
   hitClip: {fileID: 8300000, guid: e953f7a75af50714ba751d17e88a3562, type: 3}
   scoreClip: {fileID: 8300000, guid: 2b1d51d94014aaa4eb363d76eba89dee, type: 3}

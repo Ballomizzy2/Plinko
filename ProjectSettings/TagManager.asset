@@ -7,6 +7,10 @@ TagManager:
   - Ball
   - RespawnR
   - RespawnL
+  - Score
+  - Trampoline
+  - Rim
+  - PowerUp
   layers:
   - Default
   - TransparentFX

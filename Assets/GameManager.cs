@@ -79,6 +79,14 @@ public class GameManager : MonoBehaviour
         //IncreaseDifficulty();
         Camera.main.GetComponent<CameraShake>().Shake();
         floorRenderer.material.color = RandomColor();
+
+        SpawnPowerUp();
+    }
+
+    public void SpawnPowerUp() 
+    {
+        Vector3 posToSpawn = new Vector3(Random.Range(-4, 4), 1.11f, Random.Range(-4, 4));
+        Instantiate(powerUp, posToSpawn, Quaternion.identity);
     }
 
     public void DisplayScore() 
